@@ -91,22 +91,188 @@ You MUST classify every layout section into one of these exact 14 categories:
          --wireframe-bg: #f8f9fa;
          --container-bg: #ffffff;
          --border-color: #cbd5e1;
-         --border-style: dashed;
+         --border-style-dashed: dashed;
+         --border-style-solid: solid;
          --text-primary: #1e293b;
          --text-secondary: #475569;
          --text-muted: #64748b;
          --block-fill: #e2e8f0;
-         --accent-color: #334155;
+         --accent-color: #1e293b; /* Dark Slate Blue for Primary CTAs */
+         --accent-light: #f1f5f9; /* Light slate/blue tint for Secondary CTAs */
          --font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
      }
+
+     body {
+         font-family: var(--font-family);
+         line-height: 1.6;
+         color: var(--text-primary);
+         background-color: var(--wireframe-bg);
+         margin: 0;
+         padding: 40px 0;
+     }
+
+     .container {
+         max-width: 1200px;
+         margin: 0 auto;
+         padding: 0 20px;
+         box-sizing: border-box;
+     }
+
+     /* Layout Card Containers (Dashed Borders) */
+     header, section, footer {
+         background-color: var(--container-bg);
+         border: 2px var(--border-style-dashed) var(--border-color);
+         border-radius: 6px;
+         padding: 60px 40px 40px 40px; /* Elevated top padding to clear absolute tag */
+         margin-bottom: 30px;
+         position: relative;
+         box-sizing: border-box;
+     }
+
+     /* Absolute Top-Left Tag Formatting */
+     .wireframe-tag {
+         position: absolute;
+         top: 15px;
+         left: 15px;
+         font-family: monospace;
+         font-size: 11px;
+         color: var(--text-muted);
+         background-color: var(--block-fill);
+         border: 1px var(--border-style-solid) var(--border-color);
+         padding: 4px 8px;
+         border-radius: 3px;
+         display: inline-block;
+         text-transform: lowercase;
+         letter-spacing: 0.5px;
+         line-height: 1;
+     }
+
+     /* Headings explicitly stating H1-H4 levels */
+     h1, h2, h3, h4 {
+         margin-top: 0;
+         color: var(--text-primary);
+     }
+     h1 { font-size: 2.25rem; margin-bottom: 15px; }
+     h2 { font-size: 1.75rem; margin-bottom: 25px; border-bottom: 1px var(--border-style-solid) var(--block-fill); padding-bottom: 10px; }
+     h3 { font-size: 1.25rem; margin-bottom: 10px; }
+     h4 { font-size: 1rem; margin-bottom: 10px; }
+
+     p {
+         margin: 0 0 15px 0;
+         color: var(--text-secondary);
+     }
+
+     /* Primary CTA (Dark formatting) */
+     .btn-placeholder-primary {
+         display: inline-block;
+         background-color: var(--accent-color);
+         border: 2px var(--border-style-solid) var(--accent-color);
+         color: #ffffff;
+         padding: 12px 24px;
+         text-decoration: none;
+         font-weight: bold;
+         font-size: 14px;
+         text-align: center;
+         border-radius: 4px;
+         font-family: monospace;
+         box-sizing: border-box;
+     }
+
+     /* Secondary CTA (Light/Grey formatting) */
+     .btn-placeholder-secondary {
+         display: inline-block;
+         background-color: var(--accent-light);
+         border: 2px var(--border-style-solid) var(--border-color);
+         color: var(--text-primary);
+         padding: 12px 24px;
+         text-decoration: none;
+         font-weight: bold;
+         font-size: 14px;
+         text-align: center;
+         border-radius: 4px;
+         font-family: monospace;
+         box-sizing: border-box;
+     }
+
+     /* Standard Grid Framework */
+     .grid {
+         display: grid;
+         gap: 25px;
+         width: 100%;
+     }
+     .grid-1 { grid-template-columns: 1fr; }
+     
+     @media (min-width: 768px) {
+         .grid-2 { grid-template-columns: repeat(2, 1fr); }
+         .grid-3 { grid-template-columns: repeat(3, 1fr); }
+         .grid-4 { grid-template-columns: repeat(4, 1fr); }
+     }
+
+     /* Components inside containers (Solid borders) */
+     .card-item {
+         border: 1px var(--border-style-solid) var(--border-color);
+         padding: 25px;
+         border-radius: 4px;
+         background-color: #ffffff;
+         box-sizing: border-box;
+     }
+
+     .media-placeholder {
+         background-color: var(--block-fill);
+         border: 1px var(--border-style-solid) var(--border-color);
+         min-height: 200px;
+         display: flex;
+         align-items: center;
+         justify-content: center;
+         text-align: center;
+         font-family: monospace;
+         color: var(--text-secondary);
+         box-sizing: border-box;
+     }
+
+     .input-placeholder {
+         background-color: #ffffff;
+         border: 1px var(--border-style-solid) var(--border-color);
+         padding: 12px;
+         border-radius: 4px;
+         width: 100%;
+         font-family: monospace;
+         font-size: 14px;
+         box-sizing: border-box;
+         margin-bottom: 12px;
+         color: var(--text-secondary);
+     }
+
+     /* Alignments and Flex Positions */
+     .text-left { text-align: left; }
+     .text-center { text-align: center; }
+     .text-right { text-align: right; }
+
+     .cta-inline {
+         display: flex;
+         flex-direction: row;
+         gap: 12px;
+         flex-wrap: wrap;
+     }
+     .cta-stacked {
+         display: flex;
+         flex-direction: column;
+         gap: 12px;
+     }
+     .justify-left { justify-content: flex-start; }
+     .justify-center { justify-content: center; }
+     .justify-right { justify-content: flex-end; }
      ```
   3. **No "ONTOLOGY" Label Text:** Use class `class="wireframe-tag"` inside every card. It must display only the raw, lowercase ontology name (e.g., `herobanner`, `socialproof`).
   4. **Strict Vertical Sorting:** Compile code sections in the exact vertical order specified in `layout.vertical_order`.
   5. **Layout Geometry Compliance:** Write parent container grid columns, text alignment, and CTA alignments according to the specifications inside `layout.geometry_consensus`.
   6. **Unified Placeholder Syntax:** Use a clean, readable hybrid format of `[Element Type: Topic/Intent Example]` that establishes the wireframe's visual rhythm while giving copywriters clear direction.
      - *H1 Headline Example:* `<h1>[H1 Headline: 24/7 Digital Fall Alarm with Automatic Detection]</h1>`
-     - *Description Example:* `<p>[Description: Explain how the device works without landlines, highlighting automatic sensor triggers and direct UK-based monitoring center connection.]</p>`
-     - *Button Example:* `<a href="#" class="btn-placeholder">[Button: Choose Annual Saver Plan]</a>`
+     - *H2 Headline Example:* `<h2>[H2 Section Title: Technical Capabilities & Smart Device Features]</h2>`
+     - *H3 Headline Example:* `<h3>[H3 Feature Title: Heavy Fall Acceleration Sensors]</h3>`
+     - *H4 Headline Example:* `<h4>[H4 Subsection Title: Support Helplines]</h4>`
+     - *Description Example:* `<p>[Description: Explain how the device works without landlines, highlighting automatic sensor triggers.]</p>`
+     - *Button Example:* `<a href="#" class="btn-placeholder-primary">[Button: Choose Annual Saver Plan]</a>`
 - **Completion Criteria:** Complete single-file code block fully rendered.
 - **Next State:** Move to STATE 5.
 
