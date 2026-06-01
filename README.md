@@ -1,4 +1,4 @@
-# Deterministic UX Architecture Engine
+# Wireframer
 
 This repository contains the system specification for a deterministic, zero-trust UX Architecture engine. The engine operates as a strict, state-driven pipeline that maps target and competitor web pages to a standardized structural ontology. By analyzing multiple competitor pages, the engine identifies structural consensus and outputs a semantic HTML5 wireframe styled with custom CSS.
 
